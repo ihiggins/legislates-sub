@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "url": "https://www.govinfo.gov/rss/bills.xml",
+      "title": "Congressional Bills"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/bills-enr.xml",
+      "title": "Congressional Bills (Enrolled)"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/plaw.xml",
+      "title": "Public and Private Laws"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/comps.xml",
+      "title": "Statute Compilations"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/statute.xml",
+      "title": "Statutes at Large"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/uscode.xml",
+      "title": "U.S. Code"
+    }
+  ]
+}
