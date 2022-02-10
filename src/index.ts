@@ -30,10 +30,13 @@ var reSync = async (url: string) => {
     }
 }
 
-cron.schedule('0 * * * *', () => {
-    fastify.log.info('UPDATING RSS FEEDS')
-    for (var i in json.records) {
-        reSync(json.records[i].url)
-    }
-});
+// cron.schedule('0 * * * *', () => {
+//     fastify.log.info('UPDATING RSS FEEDS')
+//     for (var i in json.records) {
+//         reSync(json.records[i].url)
+//     }
+// });
 
+for (var i in json.records) {
+    reSync(json.records[i].url)
+}

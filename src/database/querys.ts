@@ -1,10 +1,9 @@
 import { dbClient } from "./connection";
-import Fastify from 'fastify'
+import Fastify from "fastify";
 
-const fastify = require('fastify')({
-  logger: true
-})
-
+const fastify = require("fastify")({
+  logger: true,
+});
 
 const getRss = async (url: string) => {
   return dbClient
@@ -15,14 +14,14 @@ const getRss = async (url: string) => {
         `
     )
     .then((res: any) => {
-      fastify.log.info(`(getRss) ${url}`)
+      fastify.log.info(`(getRss) ${url}`);
       return res.rows[0];
     })
     .catch((e: any) => {
       fastify.log.warn(`(getRss) ${e}`);
       return false;
     });
-}
+};
 
 const insertMessage = async (data: any, rss_id: number) => {
   return dbClient
@@ -35,7 +34,7 @@ const insertMessage = async (data: any, rss_id: number) => {
       `
     )
     .then((res: any) => {
-      fastify.log.info(`(insertMessage) ${data.guid}`)
+      fastify.log.info(`(insertMessage) ${data.guid}`);
       return res.rows;
     })
     .catch((e: any) => {
@@ -44,5 +43,34 @@ const insertMessage = async (data: any, rss_id: number) => {
     });
 };
 
+const timeSeries = async (series: series, limit: number, rss_id: number) => {
+  return dbClient
+    .query(
+      `
+SELECT
+    date_trunc('${series}', created_at) as month,
+    COUNT (*)
+FROM
+    message
+WHERE 
+	rss_id = ${rss_id}
+GROUP BY
+    month
+ORDER BY
+    month
+LIMIT ${limit};
+      `
+    )
+    .then((res: any) => {
+      fastify.log.info(`(timeSeries) ${rss_id}`);
+      return res.rows;
+    })
+    .catch((e: any) => {
+      fastify.log.warn(`(timeSeries) ${e}`);
+      return false;
+    });
+};
+
+type series = "day" | "week" | "month" | "year";
 
 export { getRss, insertMessage };

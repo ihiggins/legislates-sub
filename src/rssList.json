@@ -23,6 +23,46 @@
     {
       "url": "https://www.govinfo.gov/rss/uscode.xml",
       "title": "U.S. Code"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/budget.xml",
+      "title": "Budget of the U.S. Government"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/dcpd.xml",
+      "title": "Compilation of Presidential Documents"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/erp.xml",
+      "title": "Economic Report of the President"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/ppp.xml",
+      "title": "Public Papers of the President"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/cprt.xml",
+      "title": "Congressional Committee Prints"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/cdoc.xml",
+      "title": "Congressional Documents"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/chrg.xml",
+      "title": "Congressional Hearings"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/crpt.xml",
+      "title": "Congressional Reports"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/serialset.xml",
+      "title": "Congressional Serial Set"
+    },
+    {
+      "url": "https://www.govinfo.gov/rss/econi.xml",
+      "title": "Economic Indicators"
     }
   ]
 }
