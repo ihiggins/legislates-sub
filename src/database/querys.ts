@@ -73,4 +73,33 @@ LIMIT ${limit};
 
 type series = "day" | "week" | "month" | "year";
 
-export { getRss, insertMessage };
+const bulkMessageInsert = (data: any, rss_id: any) => {
+  var packed = '';
+  for (var i in data) {
+    const pack = `('${data[i].guid}','${data[i].title}','${data[i].link}','${data[i].content}','${data[i].categories}','${rss_id}')`;
+    packed += pack + ",";
+  }
+
+  packed = packed.slice(0, -1)
+
+  return dbClient
+    .query(
+      `
+    insert into message
+    (guid,title,link,content,category,rss_id)
+    values
+    ${packed}
+    ON CONFLICT DO NOTHING
+      `
+    )
+    .then((res: any) => {
+      fastify.log.info(`(bulkMessageInsert) PASS`);
+      return res.rows;
+    })
+    .catch((e: any) => {
+      fastify.log.warn(`(bulkMessageInsert) ${e}`);
+      return false;
+    });
+};
+
+export { getRss, insertMessage,bulkMessageInsert };
