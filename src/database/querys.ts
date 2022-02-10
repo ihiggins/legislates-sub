@@ -48,16 +48,16 @@ const timeSeries = async (series: series, limit: number, rss_id: number) => {
     .query(
       `
 SELECT
-    date_trunc('${series}', created_at) as month,
+    date_trunc('${series}', created_at) as ${series},
     COUNT (*)
 FROM
     message
 WHERE 
 	rss_id = ${rss_id}
 GROUP BY
-    month
+  ${series}
 ORDER BY
-    month
+  ${series}
 LIMIT ${limit};
       `
     )
