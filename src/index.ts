@@ -31,15 +31,12 @@ var reSync = async (url: string) => {
     bulkMessageInsert(items, rss.id)
 }
 
-// cron.schedule('0 * * * *', () => {
-//     fastify.log.info('UPDATING RSS FEEDS')
-//     for (var i in json.records) {
-//         reSync(json.records[i].url)
-//     }
-// });
+cron.schedule('0 * * * *', () => {
+    fastify.log.info('UPDATING RSS FEEDS')
+    for (var i in json.records) {
+        reSync(json.records[i].url)
+    }
+});
 
-for (var i in json.records) {
-    reSync(json.records[i].url)
-}
 
-// reSync('https://www.govinfo.gov/rss/bills.xml')
+
