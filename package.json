@@ -10,7 +10,7 @@
     "pm2":"pm2 list",
     "monit":"pm2 monit",
     "stop": "pm2 stop all",
-    "logs":"pm2 logs",
+    "logs":"pm2 logs"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
