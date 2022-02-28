@@ -7,7 +7,10 @@
     "dev": "ts-node src/index.ts",
     "build": "tsc -p tsconfig.json",
     "start": "pm2 start ./dist/tsc/index.js",
-    "end": "pm2 stop all"
+    "pm2":"pm2 list",
+    "monit":"pm2 monit",
+    "stop": "pm2 stop all",
+    "logs":"pm2 logs"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
