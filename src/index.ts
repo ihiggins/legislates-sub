@@ -31,12 +31,16 @@ var reSync = async (url: string) => {
     bulkMessageInsert(items, rss.id)
 }
 
-cron.schedule('0 * * * *', () => {
+// cron.schedule('0 * * * *', () => {
+//     fastify.log.info('UPDATING RSS FEEDS')
+//     for (var i in json.records) {
+//         reSync(json.records[i].url)
+//     }
+// });
+
+
+
     fastify.log.info('UPDATING RSS FEEDS')
     for (var i in json.records) {
         reSync(json.records[i].url)
     }
-});
-
-
-

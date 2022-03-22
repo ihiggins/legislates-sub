@@ -11,11 +11,6 @@ var buildSchema = async () => {
     await cleanDb();
     await rss();
     await message();
-
-
-
-
-
 };
 
 var cleanDb = () => {
@@ -23,8 +18,9 @@ var cleanDb = () => {
         `
         DROP SCHEMA public CASCADE;
         CREATE SCHEMA public;
-        GRANT ALL ON SCHEMA public TO postgres;
+        GRANT ALL ON SCHEMA public TO govpostadmin;
         GRANT ALL ON SCHEMA public TO public;
+        CREATE EXTENSION IF NOT EXISTS pg_trgm;
         `,
         (err, res) => {
             if (err) {
@@ -50,7 +46,7 @@ var message = () => {
             content text NOT NULL,
 
             category text,
-
+            tokens TSVECTOR NOT NULL,
             created_at timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL, 
             rss_id int not null,
 

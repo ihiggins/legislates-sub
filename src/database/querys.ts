@@ -28,9 +28,9 @@ const insertMessage = async (data: any, rss_id: number) => {
     .query(
       `
     insert into message
-    (guid,title,link,content,category,rss_id)
+    (guid,title,link,content,category,rss_id,tokens)
     values
-    ('${data.guid}','${data.title}','${data.link}','${data.content}','${data.categories}','${rss_id}')
+    ('${data.guid}','${data.title}','${data.link}','${data.content}','${data.categories}','${rss_id}',to_tsvector('${data.title}'))
       `
     )
     .then((res: any) => {
@@ -76,7 +76,7 @@ type series = "day" | "week" | "month" | "year";
 const bulkMessageInsert = (data: any, rss_id: any) => {
   var packed = '';
   for (var i in data) {
-    const pack = `('${data[i].guid}','${data[i].title}','${data[i].link}','${data[i].content}','${data[i].categories}','${rss_id}')`;
+    const pack = `('${data[i].guid}','${data[i].title}','${data[i].link}','${data[i].content}','${data[i].categories}','${rss_id}','${data[i].title}')`;
     packed += pack + ",";
   }
 
@@ -86,7 +86,7 @@ const bulkMessageInsert = (data: any, rss_id: any) => {
     .query(
       `
     insert into message
-    (guid,title,link,content,category,rss_id)
+    (guid,title,link,content,category,rss_id,tokens)
     values
     ${packed}
     ON CONFLICT DO NOTHING
@@ -97,7 +97,7 @@ const bulkMessageInsert = (data: any, rss_id: any) => {
       return res.rows;
     })
     .catch((e: any) => {
-      fastify.log.warn(`(bulkMessageInsert) ${e}`);
+      fastify.log.warn(`(bulkMessageInsert) ${e} , ${packed}`);
       return false;
     });
 };

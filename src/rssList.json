@@ -11,6 +11,14 @@
     {
       "url": "https://www.congress.gov/rss/senate-floor-today.xml",
       "title": "On the senate floor"
+    },
+    {
+      "url": "https://bills.parliament.uk/rss/publicbills.rss",
+      "title": "UK Parliament - Commons - bills"
+    },
+    {
+      "url": "https://bills.parliament.uk/rss/privatebills.rss",
+      "title": "UK Parliament - Lords - bills"
     }
   ]
 }
